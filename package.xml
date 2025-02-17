@@ -15,6 +15,7 @@
 
   <depend>rclcpp</depend>
   <depend>reg_of_space_server</depend>
+  <depend>remap_regions_register</depend>
   <depend>std_msgs</depend>
 
   <exec_depend>rosidl_default_runtime</exec_depend>

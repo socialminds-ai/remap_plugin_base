@@ -20,7 +20,7 @@ namespace plugins
 {
 PluginBase::PluginBase() {}
 
-PluginBase::PluginBase(std::shared_ptr<RegionsRegister> & regions_register)
+PluginBase::PluginBase(std::shared_ptr<regions_register::RegionsRegister> & regions_register)
 {
   regions_register_ = regions_register;
 }
@@ -41,7 +41,7 @@ void PluginBase::setup(
   plugin_node_ptr_ = std::make_shared<rclcpp::Node>(name);
   name_ = name;
   threaded_ = threaded;
-  regions_register_ = std::make_shared<RegionsRegister>(threaded_);
+  regions_register_ = std::make_shared<regions_register::RegionsRegister>(threaded_);
   register_client_ = plugin_node_ptr_->create_client<reg_of_space_server::srv::RegOfSpace>(
     "register_region_of_space");
   remove_client_ = plugin_node_ptr_->create_client<reg_of_space_server::srv::RemoveRegOfSpace>(

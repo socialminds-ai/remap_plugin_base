@@ -17,7 +17,6 @@ ament_auto_find_build_dependencies()
 
 ament_auto_add_library(${PROJECT_NAME}_lib SHARED
   src/remap_plugin_base/plugin_base.cpp
-  src/remap_plugin_base/regions_register.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}_lib)
@@ -30,6 +29,7 @@ install(
 ament_export_include_directories(
   include
 )
+
 ament_export_libraries(
   ${PROJECT_NAME}_lib
 )
