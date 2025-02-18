@@ -25,9 +25,6 @@
 
 #include <std_msgs/msg/string.hpp>
 
-#include "reg_of_space_server/srv/reg_of_space.hpp"
-#include "reg_of_space_server/srv/remove_reg_of_space.hpp"
-
 namespace remap
 {
 namespace plugins
@@ -42,8 +39,6 @@ protected:
 
   std::shared_ptr<regions_register::RegionsRegister> regions_register_;
 
-  rclcpp::Client<reg_of_space_server::srv::RegOfSpace>::SharedPtr register_client_;
-  rclcpp::Client<reg_of_space_server::srv::RemoveRegOfSpace>::SharedPtr remove_client_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr facts_pub_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr remove_facts_pub_;
 

@@ -27,8 +27,6 @@ PluginBase::PluginBase(std::shared_ptr<regions_register::RegionsRegister> & regi
 
 PluginBase::~PluginBase()
 {
-  remove_client_.reset();
-  register_client_.reset();
   node_ptr_.reset();
 }
 
@@ -42,10 +40,6 @@ void PluginBase::setup(
   name_ = name;
   threaded_ = threaded;
   regions_register_ = std::make_shared<regions_register::RegionsRegister>(threaded_);
-  register_client_ = plugin_node_ptr_->create_client<reg_of_space_server::srv::RegOfSpace>(
-    "register_region_of_space");
-  remove_client_ = plugin_node_ptr_->create_client<reg_of_space_server::srv::RemoveRegOfSpace>(
-    "remove_region_of_space");
   facts_pub_ = plugin_node_ptr_->create_publisher<std_msgs::msg::String>("/kb/add_fact", 10);
   remove_facts_pub_ = plugin_node_ptr_->create_publisher<std_msgs::msg::String>(
     "/kb/remove_fact",
