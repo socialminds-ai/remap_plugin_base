@@ -18,7 +18,7 @@
   <depend>remap_regions_register</depend>
   <depend>std_msgs</depend>
   <depend>vdb2pc</depend>
-  <depend>libopenvdb8.2</depend>
+  <depend>libopenvdb-dev</depend>
 
   <exec_depend>rosidl_default_runtime</exec_depend>
   <member_of_group>rosidl_interface_packages</member_of_group>
