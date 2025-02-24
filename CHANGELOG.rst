@@ -2,8 +2,8 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2025-02-24)
+------------------
 * making linters happy
 * add dep on TBB
 * we actually need libopenvdb-dev
