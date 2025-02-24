@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <remap_plugin_base/plugin_base.hpp>
+#include "remap_plugin_base/plugin_base.hpp"
 
 namespace remap
 {
