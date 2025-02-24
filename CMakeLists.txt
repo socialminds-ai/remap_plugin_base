@@ -12,12 +12,15 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+list(APPEND CMAKE_MODULE_PATH "/usr/lib/x86_64-linux-gnu/cmake/OpenVDB")
+
 find_package(ament_cmake_auto REQUIRED)
+find_package(OpenVDB MODULE REQUIRED)
 ament_auto_find_build_dependencies()
 
 ament_auto_add_library(${PROJECT_NAME}_lib SHARED
   src/remap_plugin_base/plugin_base.cpp
-  src/remap_plugin_base/regions_register.cpp
+  src/remap_plugin_base/semantic_plugin.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}_lib)
@@ -30,6 +33,7 @@ install(
 ament_export_include_directories(
   include
 )
+
 ament_export_libraries(
   ${PROJECT_NAME}_lib
 )

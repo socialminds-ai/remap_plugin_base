@@ -21,10 +21,8 @@
 
 #include <rclcpp/rclcpp.hpp>
 
-#include "remap_plugin_base/regions_register.hpp"
+#include <remap_regions_register/regions_register.hpp>
 
-#include "reg_of_space_server/srv/reg_of_space.hpp"
-#include "reg_of_space_server/srv/remove_reg_of_space.hpp"
 #include <std_msgs/msg/string.hpp>
 
 namespace remap
@@ -39,16 +37,14 @@ protected:
   std::string name_;
   bool threaded_;
 
-  std::shared_ptr<RegionsRegister> regions_register_;
+  std::shared_ptr<regions_register::RegionsRegister> regions_register_;
 
-  rclcpp::Client<reg_of_space_server::srv::RegOfSpace>::SharedPtr register_client_;
-  rclcpp::Client<reg_of_space_server::srv::RemoveRegOfSpace>::SharedPtr remove_client_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr facts_pub_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr remove_facts_pub_;
 
 public:
   PluginBase();
-  explicit PluginBase(std::shared_ptr<RegionsRegister> & regions_register);
+  explicit PluginBase(std::shared_ptr<regions_register::RegionsRegister> & regions_register);
   virtual ~PluginBase();
   void setup(
     const std::shared_ptr<rclcpp::Node> & node_ptr,
