@@ -59,6 +59,7 @@ public:
     std::shared_ptr<remap::regions_register::RegionsRegister> & regions_register);
   virtual ~SemanticPlugin();
   virtual void run() = 0;
+  virtual void storeRelationships(std::map<int, std::map<int, std::string>> relationships_matrix);
 
   inline void setSemanticMapHandler(
     std::shared_ptr<map_handler::SemanticMapHandler> & semantic_map)

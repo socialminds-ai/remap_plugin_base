@@ -39,6 +39,10 @@ SemanticPlugin::~SemanticPlugin()
   semantic_map_.reset();
 }
 
+void SemanticPlugin::storeRelationships(std::map<int, std::map<int, std::string>> relationships_matrix){
+  (void) relationships_matrix;
+}
+
 void SemanticPlugin::initializeSimulationStructures()
 {
   start_simulation_subscription_ = plugin_node_ptr_->create_subscription<std_msgs::msg::Bool>(
