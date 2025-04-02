@@ -39,7 +39,17 @@ SemanticPlugin::~SemanticPlugin()
   semantic_map_.reset();
 }
 
-void SemanticPlugin::storeRelationships(std::map<int, std::map<int, std::string>> relationships_matrix){
+void SemanticPlugin::storeRegionsRelationships(
+  std::map<int, std::map<int,
+  std::string>> relationships_matrix)
+{
+  (void) relationships_matrix;
+}
+
+void SemanticPlugin::storeEntitiesRelationships(
+  std::map<std::string, std::map<std::string,
+  std::string>> relationships_matrix)
+{
   (void) relationships_matrix;
 }
 

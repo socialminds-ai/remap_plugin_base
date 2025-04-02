@@ -15,9 +15,11 @@
 #ifndef REMAP_PLUGIN_BASE__SEMANTIC_PLUGIN_HPP_
 #define REMAP_PLUGIN_BASE__SEMANTIC_PLUGIN_HPP_
 
-#include <memory>
 #include <chrono>
 #include <functional>
+#include <map>
+#include <memory>
+#include <string>
 
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/bool.hpp>
@@ -59,7 +61,12 @@ public:
     std::shared_ptr<remap::regions_register::RegionsRegister> & regions_register);
   virtual ~SemanticPlugin();
   virtual void run() = 0;
-  virtual void storeRelationships(std::map<int, std::map<int, std::string>> relationships_matrix);
+  virtual void storeRegionsRelationships(
+    std::map<int, std::map<int,
+    std::string>> relationships_matrix);
+  virtual void storeEntitiesRelationships(
+    std::map<std::string, std::map<std::string,
+    std::string>> relationships_matrix);
 
   inline void setSemanticMapHandler(
     std::shared_ptr<map_handler::SemanticMapHandler> & semantic_map)
