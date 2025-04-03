@@ -23,6 +23,7 @@
 
 #include <remap_regions_register/regions_register.hpp>
 
+#include <kb_msgs/srv/revise.hpp>
 #include <std_msgs/msg/string.hpp>
 
 namespace remap
@@ -41,6 +42,7 @@ protected:
 
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr facts_pub_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr remove_facts_pub_;
+  rclcpp::Client<kb_msgs::srv::Revise>::SharedPtr revise_facts_client_;
 
 public:
   PluginBase();
@@ -53,6 +55,8 @@ public:
   virtual void initialize() = 0;
   void pushFact(const std::string & fact) const;
   void removeFact(const std::string & fact) const;
+  void revisePushFacts(const std::vector<std::string> & facts) const;
+  void reviseRemoveFacts(const std::vector<std::string> & facts) const;
 };
 }  // namespace plugins
 }  // namespace remap

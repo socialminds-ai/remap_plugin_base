@@ -44,6 +44,7 @@ void PluginBase::setup(
   remove_facts_pub_ = plugin_node_ptr_->create_publisher<std_msgs::msg::String>(
     "/kb/remove_fact",
     10);
+  revise_facts_client_ = plugin_node_ptr_->create_client<kb_msgs::srv::Revise>("/kb/revise");
 }
 
 void PluginBase::pushFact(const std::string & fact) const
@@ -58,6 +59,40 @@ void PluginBase::removeFact(const std::string & fact) const
   auto fact_msg = std_msgs::msg::String();
   fact_msg.data = fact;
   remove_facts_pub_->publish(fact_msg);
+}
+
+void PluginBase::revisePushFacts(
+  const std::vector<std::string> & facts) const
+{
+  auto request = std::make_shared<kb_msgs::srv::Revise::Request>();
+  request->method = "update";
+  request->statements = facts;
+  auto result = revise_facts_client_->async_send_request(request);
+  if (rclcpp::spin_until_future_complete(
+      plugin_node_ptr_,
+      result,
+      std::chrono::seconds(1)) !=
+    rclcpp::FutureReturnCode::SUCCESS)
+  {
+    RCLCPP_ERROR(node_ptr_->get_logger(), "Failed to call service revise");
+  }
+}
+
+void PluginBase::reviseRemoveFacts(
+  const std::vector<std::string> & facts) const
+{
+  auto request = std::make_shared<kb_msgs::srv::Revise::Request>();
+  request->method = "retract";
+  request->statements = facts;
+  auto result = revise_facts_client_->async_send_request(request);
+  if (rclcpp::spin_until_future_complete(
+      plugin_node_ptr_,
+      result,
+      std::chrono::seconds(1)) !=
+    rclcpp::FutureReturnCode::SUCCESS)
+  {
+    RCLCPP_ERROR(node_ptr_->get_logger(), "Failed to call service revise");
+  }
 }
 }          // namespace plugins
 }  // namespace remap
