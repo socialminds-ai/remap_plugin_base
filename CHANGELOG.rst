@@ -2,8 +2,8 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2025-04-07)
+------------------
 * adding functions to revise kb
 * supporting both regions and entities spatial relationships
 * added function to process spatial relationships
