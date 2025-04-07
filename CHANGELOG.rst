@@ -2,6 +2,13 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* adding functions to revise kb
+* supporting both regions and entities spatial relationships
+* added function to process spatial relationships
+* Contributors: Lorenzo Ferrini
+
 0.1.0 (2025-02-24)
 ------------------
 * making linters happy
