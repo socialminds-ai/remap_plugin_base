@@ -118,6 +118,41 @@ void setRegionsRegister(
 
 Allows setting the semantic map handler and regions register dynamically.
 
+#### Storing spatial relationships
+
+Each plugin can store spatial relationships in the knowledge base, starting
+from the generic spatial relationships computed by the `map_handler::SemanticMapHandler`
+or the information it can extract from the `regions_register::RegionsRegister`.
+
+To do this, each plugin should implement the following functions:
+
+```cpp
+virtual void storeRegionsRelationships(
+    std::map<int, std::map<int,
+    std::string>> relationships_matrix);
+virtual void storeEntitiesRelationships(
+    std::map<std::string, std::map<std::string,
+    std::string>> relationships_matrix);
+```
+
+These functions are called by the `remap_manager` for each plugin
+after every plugin has contributed and stored its information both
+in the knowledge base and in the 3D grid. The `map_handler::SemanticMapHandler`
+object can compute the generic spatial relationships both for regions and entities.
+The plugins can decide which of these relationships they want to use to compute the
+domain specific spatial relationships and push them to the knowledge base.
+
+Both funtions receive a matrix of relationships:
+- `std::map<int, std::map<int, std::string>> relationships_matrix` is the
+  matrix of relationships between the reMap regions, identified by their numeric
+  IDs. To be able to compute inter-entities relationships, you should extract 
+  information about the entities contained in each region. This is possible via
+  the `regions_register::RegionsRegister` API.
+- `std::map<std::string, std::map<std::string, std::string>> relationships_matrix`
+  is the matrix of relationships between the entities, identified by their names.
+  Ideally (that is, if all the plugins are doing their job correctly) these names
+  should be the same as the one used to identify the entities in the knowledge base.
+
 ## License
 
 This project is licensed under the Apache License 2.0. See LICENSE for details.
