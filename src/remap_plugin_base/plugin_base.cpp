@@ -36,7 +36,7 @@ void PluginBase::setup(
   const bool & threaded)
 {
   node_ptr_ = node_ptr;
-  plugin_node_ptr_ = std::make_shared<rclcpp::Node>(name);
+  plugin_node_ptr_ = std::make_shared<rclcpp::Node>(name, plugin_node_options_);
   name_ = name;
   threaded_ = threaded;
   regions_register_ = std::make_shared<regions_register::RegionsRegister>(threaded_);
@@ -93,6 +93,29 @@ void PluginBase::reviseRemoveFacts(
   {
     RCLCPP_ERROR(node_ptr_->get_logger(), "Failed to call service revise");
   }
+}
+
+void PluginBase::setPluginNodeOptions(const rclcpp::NodeOptions & node_options)
+{
+  plugin_node_options_ = node_options;
+
+  std::vector<std::string> filtered_option_arguments;
+  for (const std::string & arg : plugin_node_options_.arguments()) {
+    if (arg.find("__ns") != std::string::npos || arg.find("__node") != std::string::npos) {
+      if (
+        filtered_option_arguments.back() == RCL_REMAP_FLAG ||
+        filtered_option_arguments.back() == RCL_SHORT_REMAP_FLAG)
+      {
+        filtered_option_arguments.pop_back();
+      }
+      continue;
+    }
+
+    filtered_option_arguments.push_back(arg);
+  }
+
+  plugin_node_options_.arguments(filtered_option_arguments);
+  plugin_node_options_.use_global_arguments(false);
 }
 }          // namespace plugins
 }  // namespace remap

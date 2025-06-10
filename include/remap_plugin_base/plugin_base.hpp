@@ -35,6 +35,7 @@ class PluginBase
 protected:
   std::shared_ptr<rclcpp::Node> node_ptr_;
   std::shared_ptr<rclcpp::Node> plugin_node_ptr_;
+  rclcpp::NodeOptions plugin_node_options_;
   std::string name_;
   bool threaded_;
 
@@ -57,6 +58,7 @@ public:
   void removeFact(const std::string & fact) const;
   void revisePushFacts(const std::vector<std::string> & facts) const;
   void reviseRemoveFacts(const std::vector<std::string> & facts) const;
+  void setPluginNodeOptions(const rclcpp::NodeOptions & node_options);
 };
 }  // namespace plugins
 }  // namespace remap
