@@ -2,8 +2,8 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2025-06-18)
+------------------
 * overriding default node options
   we are providing custom node options, which are basically
   the same as the default ones except for the fact that we
