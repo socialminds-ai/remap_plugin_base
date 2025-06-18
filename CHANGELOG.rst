@@ -2,6 +2,17 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* overriding default node options
+  we are providing custom node options, which are basically
+  the same as the default ones except for the fact that we
+  remove the default node name (the one passed via command line
+  arguments). This way, the plugin node name is actually initialized
+  with the one passed as an argument to the node constructor.
+* README
+* Contributors: Lorenzo Ferrini
+
 0.2.0 (2025-04-07)
 ------------------
 * adding functions to revise kb
