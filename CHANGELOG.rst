@@ -2,6 +2,12 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* compat with jazzy
+  - avoid CMake conflict with TBB
+* Contributors: Séverin Lemaignan
+
 0.3.1 (2025-10-10)
 ------------------
 * Fix ament_auto warning about headers install destination
