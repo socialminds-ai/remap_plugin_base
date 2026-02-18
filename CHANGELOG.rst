@@ -2,8 +2,8 @@
 Changelog for package remap_plugin_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.2 (2026-02-18)
+------------------
 * compat with jazzy
   - avoid CMake conflict with TBB
 * Contributors: Séverin Lemaignan
